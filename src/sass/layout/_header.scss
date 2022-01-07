@@ -41,12 +41,18 @@
   line-height: 1.2em;
   text-transform: uppercase;
   border: none;
+  border-bottom: 3px solid transparent;
   background: transparent;
   cursor: pointer;
+  transition: border 250ms linear;
   color: var(--white-text);
-  // padding: 3px;
   &.current{
+    cursor: default;
     border-bottom: 3px solid var(--accent-color);
+    transition: border 250ms linear;
+  }&:hover{
+    border-bottom: 3px solid var(--accent-color);
+    transition: border 250ms linear;
   }
   &:first-child {
     margin-right: 39px;
