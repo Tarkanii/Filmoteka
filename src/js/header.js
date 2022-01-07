@@ -1,7 +1,23 @@
 const homeBtn = document.querySelector('.home');
 const libraryBtn = document.querySelector('.library');
 const body = document.querySelector('body');
+const libraryBtns = document.querySelector('.library-buttons');
+const heroForm = document.querySelector('.form-box');
 
+const chooseHeroType = () => {
+  if (body.classList.contains('library-page')) {
+    heroForm.classList.toggle('visually-hidden');
+    libraryBtns.classList.toggle('visually-hidden');
+  } else if (body.classList.contains('home-page')) {
+    if (
+      libraryBtns.classList.contains('visually-hidden') ||
+      !heroForm.classList.contains('visually-hidden')
+    )
+      return;
+    heroForm.classList.toggle('visually-hidden');
+    libraryBtns.classList.toggle('visually-hidden');
+  }
+};
 const toggleBody = () => {
   if (body.classList.contains('home-page')) {
     body.classList.remove('home-page');
@@ -15,6 +31,7 @@ const toggleBody = () => {
 const toggleBtn = e => {
   e.target.disabled = true;
   toggleBody();
+  chooseHeroType();
   homeBtn.classList.toggle('current');
   libraryBtn.classList.toggle('current');
 };

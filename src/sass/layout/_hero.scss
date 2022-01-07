@@ -1,0 +1,125 @@
+// HOME
+
+.hero {
+  padding-top: 38px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  @include tablet {
+    padding-top: 41px;
+  }
+}
+.form-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search-from {
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover .search-input{
+    transition: border-bottom-color 250ms linear;
+    border-bottom-color: var(--accent-color);
+  }
+  &:hover .search-icon use.svg{
+    transition: stroke 250ms linear;
+    stroke: var(--accent-color);
+  }
+  max-width: 280px;
+
+  @include tablet {
+    max-width: 336px;
+  }
+}
+.search-input {
+  color: var(--white-text);
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 0.5px solid #ffffff;
+  width: 280px;
+  transition: border-bottom-color 250ms linear;
+  @include tablet {
+    width: 336px;
+  }  
+  &:focus{
+    transition: border-bottom-color 250ms linear;
+    border-bottom-color: var(--accent-color);
+  } 
+  &:focus + .search-icon use.svg{
+    transition: stroke 250ms linear;
+    stroke: var(--accent-color);
+  }
+  &:focus::placeholder{
+    color:transparent;
+    transition: color 250ms linear;
+  }
+  &::placeholder{
+    transition: color 250ms linear;
+    color: var(--white-text);
+  }
+}
+.search-icon {
+  position: absolute;
+  right: 0;
+  height: 12px;
+  width: 12px;
+
+  & path{
+      fill:inherit;
+  stroke:inherit;
+  }
+  & .svg{
+  transition: stroke 250ms linear;
+  stroke: var(--white-text);
+  }
+}
+.error{
+  margin-top: 22px;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--error-color);
+}
+
+//LIBRARY
+
+.library-buttons{
+  display: flex;
+  flex-direction: row;
+}
+.library-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 130px;
+  height: 44px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color:var(--white-text);
+  background: transparent;
+  border-radius: 5px;
+  border:1px solid var(--white-text) ;
+  transition: background-color 250ms linear;
+  @include tablet{
+    width: 136px;
+  }
+  &.current{
+  cursor:default;
+  transition: background-color 250ms linear;
+  border:none;
+    background-color: var(--accent-color  );
+  }
+  &:hover{
+    transition: background-color 250ms linear;
+    border:none;
+      background-color: var(--accent-color  );
+  }
+}
+.library-button:first-child{
+  margin-right: 15px;
+}
