@@ -40,6 +40,7 @@
   background: transparent;
   border-bottom: 0.5px solid #ffffff;
   width: 280px;
+  padding-bottom: 4px;
   transition: border-bottom-color 250ms linear;
   @include tablet {
     width: 336px;
@@ -64,9 +65,9 @@
 .search-icon {
   position: absolute;
   right: 0;
+  bottom:7px;
   height: 12px;
   width: 12px;
-
   & path{
       fill:inherit;
   stroke:inherit;
