@@ -9,28 +9,29 @@
     padding-top: 41px;
   }
 }
-.form-box{
+.form-box {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  max-width: 280px;
   align-items: center;
+  @include tablet {
+    max-width: 336px;
+  }
 }
 .search-from {
+  width: 100%;
   position: relative;
   &:hover {
     cursor: pointer;
   }
-  &:hover .search-input{
+  &:hover .search-input {
     transition: border-bottom-color 250ms linear;
     border-bottom-color: var(--accent-color);
   }
-  &:hover .search-icon use.svg{
+  &:hover .search-icon use.svg {
     transition: stroke 250ms linear;
     stroke: var(--accent-color);
-  }
-  max-width: 280px;
-
-  @include tablet {
-    max-width: 336px;
   }
 }
 .search-input {
@@ -39,24 +40,22 @@
   border: none;
   background: transparent;
   border-bottom: 0.5px solid #ffffff;
-  width: 280px;
+  width: 100%;
+  padding-bottom: 4px;
   transition: border-bottom-color 250ms linear;
-  @include tablet {
-    width: 336px;
-  }  
-  &:focus{
+  &:focus {
     transition: border-bottom-color 250ms linear;
     border-bottom-color: var(--accent-color);
-  } 
-  &:focus + .search-icon use.svg{
+  }
+  &:focus + .search-icon use.svg {
     transition: stroke 250ms linear;
     stroke: var(--accent-color);
   }
-  &:focus::placeholder{
-    color:transparent;
+  &:focus::placeholder {
+    color: transparent;
     transition: color 250ms linear;
   }
-  &::placeholder{
+  &::placeholder {
     transition: color 250ms linear;
     color: var(--white-text);
   }
@@ -64,19 +63,20 @@
 .search-icon {
   position: absolute;
   right: 0;
+  bottom: 7px;
   height: 12px;
   width: 12px;
-
-  & path{
-      fill:inherit;
-  stroke:inherit;
+  & path {
+    fill: inherit;
+    stroke: inherit;
   }
-  & .svg{
-  transition: stroke 250ms linear;
-  stroke: var(--white-text);
+  & .svg {
+    fill: none;
+    transition: stroke 250ms linear;
+    stroke: var(--white-text);
   }
 }
-.error{
+.error {
   margin-top: 22px;
   font-size: 14px;
   line-height: 1.2;
@@ -85,11 +85,11 @@
 
 //LIBRARY
 
-.library-buttons{
+.library-buttons {
   display: flex;
   flex-direction: row;
 }
-.library-button{
+.library-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,26 +100,26 @@
   font-size: 12px;
   line-height: 1.3;
   text-transform: uppercase;
-  color:var(--white-text);
+  color: var(--white-text);
   background: transparent;
   border-radius: 5px;
-  border:1px solid var(--white-text) ;
+  border: 1px solid var(--white-text);
   transition: background-color 250ms linear;
-  @include tablet{
+  @include tablet {
     width: 136px;
   }
-  &.current{
-  cursor:default;
-  transition: background-color 250ms linear;
-  border:none;
-    background-color: var(--accent-color  );
-  }
-  &:hover{
+  &.current {
+    cursor: default;
     transition: background-color 250ms linear;
-    border:none;
-      background-color: var(--accent-color  );
+    border: none;
+    background-color: var(--accent-color);
+  }
+  &:hover {
+    transition: background-color 250ms linear;
+    border: none;
+    background-color: var(--accent-color);
   }
 }
-.library-button:first-child{
+.library-button:first-child {
   margin-right: 15px;
 }

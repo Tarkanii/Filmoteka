@@ -3,6 +3,7 @@ const libraryBtn = document.querySelector('.library');
 const body = document.querySelector('body');
 const libraryBtns = document.querySelector('.library-buttons');
 const heroForm = document.querySelector('.form-box');
+Array.from(document.querySelectorAll('button.current')).map(item => (item.disabled = true));
 
 const chooseHeroType = () => {
   if (body.classList.contains('library-page')) {
