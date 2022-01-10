@@ -6,7 +6,7 @@ const instanse = axios.create({
   },
 });
 
-export const fetchTrending = async ({ page = 1, period = 'week', type = 'movies' }) => {
+export const fetchTrending = async ({ page = 1, period = 'week', type = 'movie' }) => {
   try {
     const { data } = await instanse.get(`trending/${type}/${period}`, {
       params: {

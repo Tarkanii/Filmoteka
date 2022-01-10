@@ -3,10 +3,12 @@ const libraryBtn = document.querySelector('.library');
 const body = document.querySelector('body');
 const libraryBtns = document.querySelector('.library-buttons');
 const heroForm = document.querySelector('.form-box');
+const heroContainer = document.querySelector(".hero")
 Array.from(document.querySelectorAll('button.current')).map(item => (item.disabled = true));
 
 const chooseHeroType = () => {
   if (body.classList.contains('library-page')) {
+    heroContainer.classList.toggle("library");
     heroForm.classList.toggle('visually-hidden');
     libraryBtns.classList.toggle('visually-hidden');
   } else if (body.classList.contains('home-page')) {
@@ -15,6 +17,7 @@ const chooseHeroType = () => {
       !heroForm.classList.contains('visually-hidden')
     )
       return;
+    heroContainer.classList.toggle("library");
     heroForm.classList.toggle('visually-hidden');
     libraryBtns.classList.toggle('visually-hidden');
   }
