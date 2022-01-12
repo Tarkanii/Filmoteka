@@ -20,9 +20,9 @@ export const fetchTrending = async ({ page = 1, period = 'week', type = 'movie' 
   }
 };
 
-export const fetchGenres = async () => {
+export const fetchGenres = async (type) => { 
   try {
-    const { data } = await instanse.get('genre/movie/list');
+    const { data } = await instanse.get(`genre/${type}/list`);
     // console.log(data.genres);
     return data.genres;
   } catch (err) {
