@@ -64,11 +64,9 @@
   display: inline-block;
 }
 .movie-rate{
-  line-height: 16px;
   display: inline-block;
   margin-left: 11px;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding: 1px 10px;
   border-radius: 5px;
 color: var(--white-text);
 background-color: var(--accent-color);

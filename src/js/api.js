@@ -30,7 +30,7 @@ export const fetchGenres = async (type) => {
   }
 };
 
-export const fetchMovieDetails = async (id=12) => {
+export const fetchMovieDetails = async (id) => {
 try {
   const {data} = await instanse.get(`movie/${id}`)
   // console.log(data);

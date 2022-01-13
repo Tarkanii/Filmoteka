@@ -35,11 +35,11 @@ const createCardMarkup = ({
     }
     return string;
   };
-  return `  <li class="movie-card" data-id=${id}>
+  return `<li class="movie-card" >
   <img
     src=${poster_path? `${IMG_URL}${poster_path}`:`${IMG_URL}/wjYOUKIIOEklJJ4xbbQVRN6PRly.jpg`}
     width=280 px
-    alt="poster"
+    alt="poster" data-id=${id}
     class="movie-poster"
   />
   <p class="movie-name">${title || name}</p>
@@ -57,7 +57,7 @@ const renderList = async ({ list, type = 'movie', pageType = 'home' }) => {
   const filmList = document.querySelector('.film-list');
   try {
     const arrOfPromises = list.map(async item => {
-      console.log(item);
+      // console.log(item);
       const genres = await getGenreNames(item.genre_ids, type);
       const markup = createCardMarkup({ ...item, genres, pageType });
       return markup;

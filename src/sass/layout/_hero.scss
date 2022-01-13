@@ -122,7 +122,8 @@
     border: none;
     background-color: var(--accent-color);
   }
+  &:first-child{
+    margin-right: 15px;
+  }
 }
-.library-button:first-child {
-  margin-right: 15px;
-}
+

@@ -30,6 +30,7 @@ main{
   background-repeat:no-repeat;
   background-size: 100% 230px;
   background-position: center top;
+
   @include tablet {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     -webkit-image-set(url("../images/tablet/header.jpg") 1x, url("../images/tablet/header@2x.jpg") 2x);
