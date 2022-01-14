@@ -4,6 +4,12 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.25);
   touch-action: none;
+  opacity: 1;
+  transition: opacity 250ms linear ;
+
+}
+.backdrop.visually-hidden{
+  opacity: 0;
 }
 .modal {
   display: flex;
@@ -28,6 +34,8 @@
   }
 }
 .close-button{
+  z-index: 10;
+  cursor: pointer;
   position: absolute;
   top: 8px;
   right: 8px;
@@ -35,32 +43,42 @@
   width: 30px;
   border:none;
   background-color: transparent;
+  &:hover .close-icon{
+  stroke: var(--accent-color);
+  }
 }
 .close-icon{
   height: 30px;
   width: 30px;
-  stroke: #000000;
+  stroke: var(--main-text-color);
+  transition: stroke 250ms linear;
 }
 .poster-container {
+  display: flex;
+justify-content: center;
   max-height: 100%;
   margin-bottom: 30px;
-  max-width: 240px;
   @include tablet {
     margin-bottom: 0;
     margin-right: 30px;
+  }
+}
+.modal-poster {
+  border-radius:5px ;
+  max-height: 100%;
+  max-width: 240px;
+  @include tablet {
     max-width: 264px;
   }
   @include desktop {
     max-width: 396px;
   }
 }
-.modal-poster {
-  border-radius:5px ;
-  max-height: 100%;
-}
 .modal-info {
   font-weight: 500;
+  @include tablet{
 overflow-y: auto;
+  }
 }
 .modal-title{
   text-transform: uppercase;
@@ -84,17 +102,26 @@ margin-bottom: 20px;
 }
 }
 .keys{
-color: #8c8c8c;@include tablet{
+color: #8c8c8c;
+@include tablet{
   margin-right: 40px;
 }
 @include desktop{
   margin-right: 85px;
 }
-
 }
 .key:not(:last-child), .value:not(:last-child){
 margin-bottom: 10px;
 };
+.values{
+  max-width: 135px;
+  @include tablet{
+    max-width: 200px;
+  }
+  @include desktop{
+    max-width: 250px;
+  }
+}
 .value.title{
   text-transform: uppercase;
 }

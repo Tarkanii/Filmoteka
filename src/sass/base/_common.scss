@@ -1,6 +1,23 @@
 @import '../utils/_mixins.scss';
 @import '../utils/_variables.scss';
+
+
+// ::-webkit-scrollbar{
+//   position: fixed;
+//   width: 10px;
+
+// }
+// ::-webkit-scrollbar-thumb{
+// background-color: transparent;
+// }
+// ::-webkit-scrollbar-thumb{
+//   border-radius: 10px;
+//   background-color: var(--accent-color);
+//   box-shadow: inset 0 0 7px #ffffff;
+
+// }
 body{
+  position: relative;
   min-height: 99.9vh;
   display: flex;
   flex-direction: column;
