@@ -3,6 +3,8 @@ import { fetchTrending, fetchGenres } from './api';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  if(localStorage.getItem("watched")===null)localStorage.setItem("watched",JSON.stringify([]));
+  if(localStorage.getItem("queue")===null)localStorage.setItem("queue",JSON.stringify([]));
   renderTrending({});
 });
 
@@ -35,6 +37,7 @@ function createCardMarkup ({
   pageType = 'library',
   genres,
   id,
+  media_type,
   poster_path,
   title,
   release_date,
@@ -46,7 +49,7 @@ function createCardMarkup ({
   <img
     src=${poster_path? `${IMG_URL}${poster_path}`:`${IMG_URL}/wjYOUKIIOEklJJ4xbbQVRN6PRly.jpg`}
     width=280 px
-    alt="poster" data-id=${id}
+    alt="poster" data-id=${id} data-type=${media_type}
     class="movie-poster"
   />
   <p class="movie-name">${title || name}</p>
