@@ -1,5 +1,7 @@
-import { fetchMovieDetails } from './api';
+import { fetchDetails } from './api';
 import { genreLengthController } from './filmList';
+import { storageOperation,storageContains } from './localStorage';
+console.log(storageContains("524434","movie","watched"));
 const body = document.querySelector('body');
 const filmList = document.querySelector('.film-list');
 const backdrop = document.querySelector('.backdrop');
@@ -9,12 +11,14 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 filmList.addEventListener('click', async ({ target }) => {
   if (target.nodeName !== 'IMG') return;
   body.style.overflow = 'hidden';
-  await renderModal(target.dataset.id);
+  await renderModal(target.dataset.id,target.dataset.type);
   backdrop.classList.toggle('visually-hidden');
   const closeButton = document.querySelector('.close-button');
   closeButton?.addEventListener('click', () => {
     if (!backdrop.classList.contains('visually-hidden')) closeModal();
   });
+const storageButtons = document.querySelector(".modal__buttons")
+storageButtons.addEventListener("click",storageOperation)
 });
 
 document.addEventListener('keydown', ({ key }) => {
@@ -29,13 +33,13 @@ backdrop.addEventListener('click', ({ target }) => {
 function closeModal() {
   body.style.overflow = 'unset';
   backdrop.classList.add('visually-hidden');
+  backdrop.innerHTML = '';
 }
-async function renderModal(id) {
+async function renderModal(id,type) {
   try {
-    const movieDetails = await fetchMovieDetails(id);
+    const movieDetails = await fetchDetails(id,type);
     console.log(movieDetails);
-    backdrop.innerHTML = '';
-    const markup = createModalMarkup(movieDetails);
+    const markup = createModalMarkup({...movieDetails,type:type});
     backdrop.insertAdjacentHTML('beforeend', markup);
   } catch (err) {
     console.log(err);
@@ -44,6 +48,7 @@ async function renderModal(id) {
 
 function createModalMarkup({
   id,
+  type,
   poster_path,
   genres,
   original_title,
@@ -53,6 +58,8 @@ function createModalMarkup({
   popularity,
   overview,
 }) {
+  const isInWatched = storageContains(String(id),type,"watched");
+  const isInQueue=storageContains(String(id),type,"queue");
   return `<div class="modal">
     <button class="close-button">
       <svg class="close-icon">
@@ -61,7 +68,7 @@ function createModalMarkup({
     </button>
     <div class="poster-container">
       <img
-        src=${IMG_URL}${poster_path}
+        src=${poster_path? `${IMG_URL}${poster_path}`:`${IMG_URL}/wjYOUKIIOEklJJ4xbbQVRN6PRly.jpg`}
         alt="poster"
         class="modal-poster"
       />
@@ -88,9 +95,9 @@ function createModalMarkup({
       <p class="movie-description">
       ${overview}
       </p>
-      <div class="modal__buttons" data-id=${id}>
-        <button class="modal-button watched">ADD TO WATCHED</button>
-        <button class="modal-button queue">ADD TO QUEUE</button>
+      <div class="modal__buttons" data-id=${id} data-type=${type}>
+        <button class="modal-button watched ${isInWatched&&"selected"}" >${isInWatched?"remove from watched":"add to watched"}</button>
+        <button class="modal-button queue ${isInQueue&&"selected"}">${isInQueue?"remove from queue":"add to queue"}</button>
       </div>
     </div>
   </div>`;

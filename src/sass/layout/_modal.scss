@@ -9,6 +9,7 @@
 
 }
 .backdrop.visually-hidden{
+  transition: opacity 250ms linear ;
   opacity: 0;
 }
 .modal {
@@ -192,6 +193,8 @@ font-weight: 500;
   }
 @include tablet{
   width: 125px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 @include desktop{
   width:136px;

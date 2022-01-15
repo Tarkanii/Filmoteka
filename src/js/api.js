@@ -30,9 +30,9 @@ export const fetchGenres = async (type) => {
   }
 };
 
-export const fetchMovieDetails = async (id) => {
+export const fetchDetails = async (id,type) => {
 try {
-  const {data} = await instanse.get(`movie/${id}`)
+  const {data} = await instanse.get(`${type}/${id}`)
   // console.log(data);
   return data;
 } catch (err) {
