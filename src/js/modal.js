@@ -1,7 +1,7 @@
 import { fetchDetails } from './api';
 import { genreLengthController } from './filmList';
-import { storageOperation,storageContains } from './localStorage';
-console.log(storageContains("524434","movie","watched"));
+import { storageOperation,storageContains,storageRender } from './localStorage';
+
 const body = document.querySelector('body');
 const filmList = document.querySelector('.film-list');
 const backdrop = document.querySelector('.backdrop');
@@ -34,6 +34,7 @@ function closeModal() {
   body.style.overflow = 'unset';
   backdrop.classList.add('visually-hidden');
   backdrop.innerHTML = '';
+  storageRender("movie");
 }
 async function renderModal(id,type) {
   try {
