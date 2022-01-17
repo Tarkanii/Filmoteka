@@ -5,7 +5,7 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 document.addEventListener('DOMContentLoaded', async () => {
   if(localStorage.getItem("watched")===null)localStorage.setItem("watched",JSON.stringify([]));
   if(localStorage.getItem("queue")===null)localStorage.setItem("queue",JSON.stringify([]));
-  renderTrending({page:999});
+  renderTrending({});
 });
 
 export async function renderTrending({ page = 1, type = 'movie' }){
@@ -17,12 +17,12 @@ export async function renderTrending({ page = 1, type = 'movie' }){
   }
 };
 
-async function renderList ({ list, type = 'movie', pageType = 'home' }){
+export async function renderList ({ list, type = 'movie' }){
   const filmList = document.querySelector('.film-list');
   try {
     const arrOfPromises = list.map(async item => {
       const genres = await getGenreNames(item.genre_ids, type);
-      const markup = createCardMarkup({ ...item, genres, pageType });
+      const markup = createCardMarkup({ ...item, genres,media_type:type});
       return markup;
     });
     const markup = (await Promise.all(arrOfPromises)).join('');
@@ -50,12 +50,12 @@ export function createCardMarkup ({
     src=${poster_path? `${IMG_URL}${poster_path}`:`${IMG_URL}/wjYOUKIIOEklJJ4xbbQVRN6PRly.jpg`}
     width=280px
     height=400px
-    alt="poster" data-id=${id} data-type=${media_type}
+    alt="poster" id=${id} data-type=${media_type}
     class="movie-poster"
   />
   <p class="movie-name">${title || name}</p>
   <div class="movie-thumb">
-    ${genres?.length ? `<p class="movie-genres">${genreLengthController(genres,32)}</p>` : ''}
+    ${genres?.length ? `<p class="movie-genres">${genreLengthController(genres,31)}</p>` : ''}
     ${
         `<p class="movie-date">${release_date|| first_air_date?release_date?.slice(0, 4) || first_air_date?.slice(0, 4):""}</p>`
     }

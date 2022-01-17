@@ -1,6 +1,6 @@
 import { fetchDetails } from './api';
 import { genreLengthController } from './filmList';
-import { storageOperation,storageContains,storageRender } from './localStorage';
+import { storageOperation, storageContains, storageRender } from './localStorage';
 
 const body = document.querySelector('body');
 const filmList = document.querySelector('.film-list');
@@ -11,36 +11,41 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 filmList.addEventListener('click', async ({ target }) => {
   if (target.nodeName !== 'IMG') return;
   body.style.overflow = 'hidden';
-  await renderModal(target.dataset.id,target.dataset.type);
-  backdrop.classList.toggle('visually-hidden');
+  await renderModal(target.id, target.dataset.type);
+  backdrop.classList.toggle('hidden');
   const closeButton = document.querySelector('.close-button');
   closeButton?.addEventListener('click', () => {
-    if (!backdrop.classList.contains('visually-hidden')) closeModal();
+    if (!backdrop.classList.contains('hidden')) closeModal();
   });
-const storageButtons = document.querySelector(".modal__buttons")
-storageButtons.addEventListener("click",storageOperation)
+  const storageButtons = document.querySelector('.modal__buttons');
+  storageButtons.addEventListener('click', storageOperation);
 });
 
 document.addEventListener('keydown', ({ key }) => {
   if (key !== 'Escape') return;
-  if (!backdrop.classList.contains('visually-hidden')) closeModal();
+  if (!backdrop.classList.contains('hidden')) closeModal();
 });
 backdrop.addEventListener('click', ({ target }) => {
   if (!target.classList.contains('backdrop')) return;
-  if (!backdrop.classList.contains('visually-hidden')) closeModal();
+  if (!backdrop.classList.contains('hidden')) closeModal();
 });
 
-function closeModal() {
+async function closeModal() {
+  const filmId = document.querySelector('.modal__buttons').dataset.id;
   body.style.overflow = 'unset';
-  backdrop.classList.add('visually-hidden');
+  backdrop.classList.add('hidden');
   backdrop.innerHTML = '';
-  storageRender("movie");
+  await storageRender('movie');
+if(body.classList.contains("library-page")){  
+  const filmPoster = document.getElementById(`${String(filmId)}`);
+  filmPoster?.scrollIntoView({block:'center',inline:'center',behavior:"smooth"});}
 }
-async function renderModal(id,type) {
+
+async function renderModal(id, type) {
   try {
-    const movieDetails = await fetchDetails(id,type);
-    console.log(movieDetails);
-    const markup = createModalMarkup({...movieDetails,type:type});
+    const movieDetails = await fetchDetails(id, type);
+    // console.log(movieDetails);
+    const markup = createModalMarkup({ ...movieDetails, type });
     backdrop.insertAdjacentHTML('beforeend', markup);
   } catch (err) {
     console.log(err);
@@ -59,8 +64,8 @@ function createModalMarkup({
   popularity,
   overview,
 }) {
-  const isInWatched = storageContains(String(id),type,"watched");
-  const isInQueue=storageContains(String(id),type,"queue");
+  const isInWatched = storageContains(String(id), type, 'watched');
+  const isInQueue = storageContains(String(id), type, 'queue');
   return `<div class="modal">
     <button class="close-button">
       <svg class="close-icon">
@@ -69,7 +74,9 @@ function createModalMarkup({
     </button>
     <div class="poster-container">
       <img
-        src=${poster_path? `${IMG_URL}${poster_path}`:`${IMG_URL}/wjYOUKIIOEklJJ4xbbQVRN6PRly.jpg`}
+        src=${
+          poster_path ? `${IMG_URL}${poster_path}` : `${IMG_URL}/wjYOUKIIOEklJJ4xbbQVRN6PRly.jpg`
+        }
         alt="poster"
         class="modal-poster"
       />
@@ -85,11 +92,16 @@ function createModalMarkup({
         </ul>
         <ul class="values">
           <li class="value">
-            <span class="movie-rate modal--rate">${vote_average.toFixed(1)}</span> / <span class="modal-votes">${vote_count}</span>
+            <span class="movie-rate modal--rate">${vote_average.toFixed(
+              1,
+            )}</span> / <span class="modal-votes">${vote_count}</span>
           </li>
           <li class="value">${popularity.toFixed(1)}</li>
           <li class="value title">${original_title}</li>
-          <li class="value">${genreLengthController(genres.map(item => item.name),26)}</li>
+          <li class="value">${genres.length ? genreLengthController(
+            genres.map(item => item.name),
+            26,
+          ): "None"}</li>
         </ul>
       </div>
       <h3 class="about-title">ABOUT</h3>
@@ -97,8 +109,12 @@ function createModalMarkup({
       ${overview}
       </p>
       <div class="modal__buttons" data-id=${id} data-type=${type}>
-        <button class="modal-button watched ${isInWatched&&"selected"}" >${isInWatched?"remove from watched":"add to watched"}</button>
-        <button class="modal-button queue ${isInQueue&&"selected"}">${isInQueue?"remove from queue":"add to queue"}</button>
+        <button class="modal-button watched ${isInWatched && 'selected'}" >${
+    isInWatched ? 'remove from watched' : 'add to watched'
+  }</button>
+        <button class="modal-button queue ${isInQueue && 'selected'}">${
+    isInQueue ? 'remove from queue' : 'add to queue'
+  }</button>
       </div>
     </div>
   </div>`;
