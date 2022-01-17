@@ -40,13 +40,14 @@ try {
 }
 };
 
-export const search = async (query)=>{
+export const search = async ({query,page=1})=>{
   if(!query)return;
   try {
-    const res = await instanse.get(`search/movie`,{params:{
+    const {data} = await instanse.get(`search/movie`,{params:{
+      page,
       query
     }})
-    // console.log(res);
+    return data;
   } catch (err) {
     console.log(err.message)
   }
