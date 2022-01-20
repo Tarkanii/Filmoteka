@@ -1,7 +1,7 @@
 import { chooseCurrentButton, storageRender } from './localstorage';
 import { renderTrending } from './filmList';
 import { renderSearch } from './search';
-import { search } from './api';
+
 const homeBtn = document.querySelector('.home');
 const libraryBtn = document.querySelector('.library');
 const body = document.querySelector('body');
@@ -10,16 +10,16 @@ const heroForm = document.querySelector('.form-box');
 const heroContainer = document.querySelector('.hero');
 const nothingAdded = document.querySelector('.nothing-added');
 const searchInput = document.querySelector('.search-input');
-
+const paginator = document.querySelector(".paginator");
 
 homeBtn.addEventListener('click', e => {
   libraryBtn.disabled = false;
   toggleBtn(e);  
   if (!nothingAdded.classList.contains('visually-hidden'))
     nothingAdded.classList.add('visually-hidden');
-    const input = searchInput.value;
-if(input.length===0)renderTrending({});
-else if(input.length>0)renderSearch(input);
+    const query = searchInput.value;
+if(query.length===0)renderTrending({});
+else if(query.length>0)renderSearch({query});
 
 });
 
@@ -28,6 +28,8 @@ libraryBtn.addEventListener('click', e => {
   toggleBtn(e);
   chooseCurrentButton();
 storageRender("movie");
+paginator.innerHTML="";
+if (!paginator.classList.contains('visually-hidden'))paginator.classList.add("visually-hidden");
 });
 
 function toggleBtn(e) {
