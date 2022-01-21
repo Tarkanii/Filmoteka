@@ -5,6 +5,8 @@ import { storageOperation, storageContains, storageRender } from './localStorage
 const body = document.querySelector('body');
 const filmList = document.querySelector('.film-list');
 const backdrop = document.querySelector('.backdrop');
+const queueBtn = document.querySelector(".hero-queue");
+const watchedBtn = document.querySelector(".hero-watched");
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -31,20 +33,21 @@ backdrop.addEventListener('click', ({ target }) => {
 });
 
 async function closeModal() {
-  const filmId = document.querySelector('.modal__buttons').dataset.id;
   body.style.overflow = 'unset';
   backdrop.classList.add('hidden');
   backdrop.innerHTML = '';
-  await storageRender('movie');
-if(body.classList.contains("library-page")){  
-  const filmPoster = document.getElementById(`${String(filmId)}`);
-  filmPoster?.scrollIntoView({block:'center',inline:'center',behavior:"smooth"});}
+  if(queueBtn.classList.contains("current")){
+    const queueArr = JSON.parse(localStorage.getItem('queue'));
+    if(queueArr.length!=filmList.children.length)storageRender("movie");
+  }else if(watchedBtn.classList.contains("current")){
+    const watchedArr = JSON.parse(localStorage.getItem('watched'));
+    if(watchedArr.length!=filmList.children.length)storageRender("movie");
+  }
 }
 
 async function renderModal(id, type) {
   try {
     const movieDetails = await fetchDetails(id, type);
-    // console.log(movieDetails);
     const markup = createModalMarkup({ ...movieDetails, type });
     backdrop.insertAdjacentHTML('beforeend', markup);
   } catch (err) {
