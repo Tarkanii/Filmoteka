@@ -6,7 +6,7 @@
   "homepage": "https://Tarkanii.github.io/Filmoteka",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /Filmoteka/"
+    "build": "parcel build src/*.html https://Tarkanii.github.io/Filmoteka/"
   },
   "repository": {
     "type": "git",
