@@ -2,13 +2,13 @@
 
 .hero {
   padding-top: 38px;
-  padding-bottom: 91px;
+  padding-bottom: 93px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 .hero.library{
-  padding-bottom: 71px;
+  padding-bottom: 76px;
 }
 .form-box {
   position: relative;
@@ -21,9 +21,6 @@
   max-width: 280px;
   width: 100%;
   position: relative;
-  &:hover {
-    cursor: pointer;
-  }
   &:hover .search-input {
     transition: border-bottom-color 250ms linear;
     border-bottom-color: var(--accent-color);
@@ -43,6 +40,7 @@
   background: transparent;
   border-bottom: 0.5px solid #ffffff;
   width: 100%;
+  line-height: 1;
   padding-bottom: 4px;
   transition: border-bottom-color 250ms linear;
   &:focus {

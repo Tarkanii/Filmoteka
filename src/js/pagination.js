@@ -60,7 +60,7 @@ export function renderPaginator(current, totalPages) {
     markup = createMobilePaginator(current, totalPages);
   } else {
     if (totalPages <= 7) {
-      markup = createMiddleSizePaginator(current, totalPages);
+      markup = createNumberOfButtons({ startValue: 1, endValue: totalPages, current, totalPages });
     } else if (totalPages > 7) {
       markup = createLargeSizePaginator(current, totalPages);
     }
@@ -69,77 +69,39 @@ export function renderPaginator(current, totalPages) {
   paginator.insertAdjacentHTML('beforeend', markup);
 }
 
-function createMobilePaginator(curr, totalPages) {
+function createMobilePaginator(current, totalPages) {
   if (totalPages <= 5) {
-    return createMiddleSizePaginator(curr, totalPages);
-  } else if (1 + 1 >= curr && curr >= 1) {
-    return createStartMobileButtons(curr, totalPages);
-  } else if (totalPages - 2 <= curr && curr <= totalPages) {
-    return createLastMobileButtons(curr, totalPages);
-  } else if (curr - 1 > 1 && curr + 1 <= totalPages) {
+    return createNumberOfButtons({ startValue: 1, endValue: totalPages, current, totalPages });
+  } else if (1 + 1 >= current && current >= 1) {
+    return createNumberOfButtons({ startValue: 1, endValue: 3, current, totalPages });
+  } else if (totalPages - 1 <= current && current <= totalPages) {
+    return createNumberOfButtons({
+      startValue: totalPages - 2,
+      endValue: totalPages,
+      current,
+      totalPages,
+    });
+  } else if (current - 1 > 1 && current + 1 <= totalPages) {
     return `<ul class="paginator-buttons">
     <li class="paginator-item "><button class="paginator-button previous" ${
-      curr === 1 ? 'disabled' : ''
+      current === 1 ? 'disabled' : ''
     }><svg class="left-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>
-    <li class="paginator-item"><button class="paginator-button number ">${curr - 1}</button></li>
-    <li class="paginator-item"><button class="paginator-button number current " disabled>${curr}</button></li>
-    <li class="paginator-item"><button class="paginator-button number ">${curr + 1}</button></li>
+    <li class="paginator-item"><button class="paginator-button number ">${current - 1}</button></li>
+    <li class="paginator-item"><button class="paginator-button number current " disabled>${current}</button></li>
+    <li class="paginator-item"><button class="paginator-button number ">${current + 1}</button></li>
     <li class="paginator-item"><button class="paginator-button next" ${
-      curr === totalPages ? 'disabled' : ''
+      current === totalPages ? 'disabled' : ''
     }><svg class="right-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>
     </ul>`;
   }
 }
 
-function createStartMobileButtons(current, totalPages) {
+function createNumberOfButtons({ startValue, endValue, current, totalPages }) {
   const arrOfMarkup = [];
-  for (let i = 1; i <= 3; i++) {
+  for (let i = startValue; i <= endValue; i++) {
     const buttonMarkup = `<li class="paginator-item"><button class="paginator-button number ${
       i === current ? 'current' : ''
-    }"${
-      i === current ? 'disabled' : ''
-    }>${i}</button></li>`;
-    arrOfMarkup.push(buttonMarkup);
-  }
-  const markup = `<ul class="paginator-buttons"><li class="paginator-item"><button class="paginator-button previous" ${
-    current === 1 ? 'disabled' : ''
-  }><svg class="left-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>${arrOfMarkup.join(
-    '',
-  )}
-  <li class="paginator-item"><button class="paginator-button next"  ${
-    current === totalPages ? 'disabled' : ''
-  }><svg class="right-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li></ul>`;
-  return markup;
-}
-function createLastMobileButtons(current, totalPages) {
-  const arrOfMarkup = [];
-  for (let i = curr; i <= totalPages; i++) {
-    const buttonMarkup = `<li class="paginator-item"><button class="paginator-button number ${
-      i === current ? 'current' : ''
-    }" ${
-      i === current ? 'disabled' : ''
-    }>${i}</button></li>`;
-    arrOfMarkup.push(buttonMarkup);
-  }
-  const markup = `<ul class="paginator-buttons"><li class="paginator-item"><button class="paginator-button previous" ${
-    current === 1 ? 'disabled' : ''
-  }><svg class="left-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>${arrOfMarkup.join(
-    '',
-  )}
-  <li class="paginator-item"><button class="paginator-button next"  ${
-    current === totalPages ? 'disabled' : ''
-  }><svg class="right-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li></ul>`;
-  return markup;
-}
-
-function createMiddleSizePaginator(current, totalPages) {
-  const arrOfMarkup = [];
-  for (let i = 1; i <= totalPages; i++) {
-    const buttonMarkup = `<li class="paginator-item"><button class="paginator-button number ${
-      i === current ? 'current' : ''
-    }"${
-      i === current ? 'disabled' : ''
-    }>${i}</button></li>`;
+    }"${i === current ? 'disabled' : ''}>${i}</button></li>`;
     arrOfMarkup.push(buttonMarkup);
   }
   const markup = `<ul class="paginator-buttons"><li class="paginator-item"><button class="paginator-button previous" ${

@@ -5,7 +5,7 @@ import { renderPaginator } from './pagination';
 const error = document.querySelector('.error');
 const searchForm = document.querySelector('.search-form');
 const loader = document.querySelector('.loader-backdrop');
-
+const paginator = document.querySelector(".paginator");
 searchForm.addEventListener('submit', e => {
   e.preventDefault();
 });
@@ -31,6 +31,7 @@ export async function renderSearch({ query, page = 1 }) {
       error.classList.toggle('visually-hidden');
     }, 3000);
   } else {
+    paginator.dataset.pages = total_pages;
     renderList({ list: results });
     renderPaginator(page, total_pages);
     loader.classList.toggle('visually-hidden');
