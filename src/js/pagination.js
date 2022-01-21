@@ -119,7 +119,7 @@ function createLargeSizePaginator(current, totalPages) {
   return `<ul class="paginator-buttons">
 <li class="paginator-item "><button class="paginator-button previous" ${
     current === 1 ? 'disabled' : ''
-  }><svg class="left-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+  }><svg class="left-arrow"><use href="./images/symbol-defs.svg#icon-arrow-left" class="svg"></use></svg></button></li>
 <li class="paginator-item ${
     current === 1 ? 'visually-hidden' : ''
   }"><button class="paginator-button number ">1</button></li>
@@ -147,6 +147,6 @@ function createLargeSizePaginator(current, totalPages) {
   }"><button class="paginator-button number ">${totalPages}</button></li>
 <li class="paginator-item"><button class="paginator-button next" ${
     current === totalPages ? 'disabled' : ''
-  }><svg class="right-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+  }><svg class="right-arrow"><use href="./images/symbol-defs.svg#icon-arrow-left" class="svg"></use></svg></button></li>
 </ul>`;
 }
