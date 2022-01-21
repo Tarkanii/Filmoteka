@@ -84,4 +84,4 @@ var t=arguments[3],e="Expected a function",n=NaN,r="[object Symbol]",i=/^\s+|\s+
 },{"./api":"cZF8","./filmList":"OeDY","./localStorage":"MoVy"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/header"),require("./js/search"),require("./js/hero"),require("./js/filmList"),require("./js/pagination"),require("./js/modal"),require("./js/localStorage");
 },{"./sass/main.scss":"clu1","./js/header":"cGsR","./js/search":"HU2o","./js/hero":"l9pR","./js/filmList":"OeDY","./js/pagination":"o8lo","./js/modal":"RSqK","./js/localStorage":"MoVy"}]},{},["Focm"], null)
-//# sourceMappingURL=/Filmoteka/src.e697d5ae.js.map
+//# sourceMappingURL=/Filmoteka/src.fe0aac30.js.map
