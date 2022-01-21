@@ -85,13 +85,13 @@ function createMobilePaginator(current, totalPages) {
     return `<ul class="paginator-buttons">
     <li class="paginator-item "><button class="paginator-button previous" ${
       current === 1 ? 'disabled' : ''
-    }><svg class="left-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+    }><svg class="left-arrow"><use href="/Filmoteka/symbol-defs.aefec09d.svg#icon-arrow-left" class="svg"></use></svg></button></li>
     <li class="paginator-item"><button class="paginator-button number ">${current - 1}</button></li>
     <li class="paginator-item"><button class="paginator-button number current " disabled>${current}</button></li>
     <li class="paginator-item"><button class="paginator-button number ">${current + 1}</button></li>
     <li class="paginator-item"><button class="paginator-button next" ${
       current === totalPages ? 'disabled' : ''
-    }><svg class="right-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+    }><svg class="right-arrow"><use href="/Filmoteka/symbol-defs.aefec09d.svg#icon-arrow-left" class="svg"></use></svg></button></li>
     </ul>`;
   }
 }
@@ -106,12 +106,12 @@ function createNumberOfButtons({ startValue, endValue, current, totalPages }) {
   }
   const markup = `<ul class="paginator-buttons"><li class="paginator-item"><button class="paginator-button previous" ${
     current === 1 ? 'disabled' : ''
-  }><svg class="left-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>${arrOfMarkup.join(
+  }><svg class="left-arrow"><use href="/Filmoteka/symbol-defs.aefec09d.svg#icon-arrow-left" class="svg"></use></svg></button></li>${arrOfMarkup.join(
     '',
   )}
   <li class="paginator-item"><button class="paginator-button next"  ${
     current === totalPages ? 'disabled' : ''
-  }><svg class="right-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li></ul>`;
+  }><svg class="right-arrow"><use href="/Filmoteka/symbol-defs.aefec09d.svg#icon-arrow-left" class="svg"></use></svg></button></li></ul>`;
   return markup;
 }
 
@@ -119,13 +119,13 @@ function createLargeSizePaginator(current, totalPages) {
   return `<ul class="paginator-buttons">
 <li class="paginator-item "><button class="paginator-button previous" ${
     current === 1 ? 'disabled' : ''
-  }><svg class="left-arrow"><use href="./images/symbol-defs.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+  }><svg class="left-arrow"><use href="/Filmoteka/symbol-defs.aefec09d.svg#icon-arrow-left" class="svg"></use></svg></button></li>
 <li class="paginator-item ${
     current === 1 ? 'visually-hidden' : ''
   }"><button class="paginator-button number ">1</button></li>
 <li class="paginator-item first-decor ${
     current - 1 <= 3 ? 'visually-hidden' : ''
-  }"><svg class="dots"><use href="/symbol-defs.4fba6ab5.svg#dots" class="svg"></use></svg></li>
+  }"><svg class="dots"><use href="/Filmoteka/symbol-defs.aefec09d.svg#dots" class="svg"></use></svg></li>
 <li class="paginator-item ${
     current - 2 <= 1 ? 'visually-hidden' : ''
   }"><button class="paginator-button number ">${current - 2}</button></li>
@@ -141,12 +141,12 @@ function createLargeSizePaginator(current, totalPages) {
   }"><button class="paginator-button number ">${current + 2}</button></li>
 <li class="paginator-item second-decor ${
     totalPages - current <= 3 ? 'visually-hidden' : ''
-  }"><svg class="dots"><use href="/symbol-defs.4fba6ab5.svg#dots" class="svg"></use></svg></li>
+  }"><svg class="dots"><use href="/Filmoteka/symbol-defs.aefec09d.svg#dots" class="svg"></use></svg></li>
 <li class="paginator-item ${
     current == totalPages ? 'visually-hidden' : ''
   }"><button class="paginator-button number ">${totalPages}</button></li>
 <li class="paginator-item"><button class="paginator-button next" ${
     current === totalPages ? 'disabled' : ''
-  }><svg class="right-arrow"><use href="./images/symbol-defs.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+  }><svg class="right-arrow"><use href="/Filmoteka/symbol-defs.aefec09d.svg#icon-arrow-left" class="svg"></use></svg></button></li>
 </ul>`;
 }
