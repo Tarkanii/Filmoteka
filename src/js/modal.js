@@ -72,7 +72,7 @@ function createModalMarkup({
   return `<div class="modal">
     <button class="close-button">
       <svg class="close-icon">
-        <use href="/Filmoteka/symbol-defs.aefec09d.svg#icon-arrow-left#closeIcon"></use>
+        <use href="/Filmoteka/symbol-defs.aefec09d.svg#closeIcon"></use>
       </svg>
     </button>
     <div class="poster-container">
