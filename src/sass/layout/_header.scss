@@ -1,0 +1,61 @@
+.container.nav {
+  display: flex;
+  flex-direction: row;
+  padding-top: 41px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.filmoteka {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  & .title {
+  display: none;
+  color: var(--white-text);
+  font-size: 30px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  @include tablet{
+    display: inline;
+  }
+}
+}
+
+.filmIcon {
+  height: 24px;
+  width: 24px;
+  @include tablet{
+    margin-right: 14px;
+  }
+}
+.nav__buttons {
+  display: flex;
+  flex-direction: row;
+}
+.nav_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: fit-content;
+  font-size: 12px;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: border 250ms linear;
+  color: var(--white-text);
+  &.current{
+    cursor: default;
+    border-bottom: 3px solid var(--accent-color);
+    transition: border 250ms linear;
+  }&:hover{
+    border-bottom: 3px solid var(--accent-color);
+    transition: border 250ms linear;
+  }
+  &:first-child {
+    margin-right: 39px;
+  }
+}
+
