@@ -10,26 +10,27 @@ const heroForm = document.querySelector('.form-box');
 const heroContainer = document.querySelector('.hero');
 const nothingAdded = document.querySelector('.nothing-added');
 const searchInput = document.querySelector('.search-input');
-const paginator = document.querySelector(".paginator");
+const paginator = document.querySelector('.paginator');
 
 homeBtn.addEventListener('click', e => {
+  document.querySelector("head>title").innerHTML = "Home";
   libraryBtn.disabled = false;
-  toggleBtn(e);  
+  toggleBtn(e);
   if (!nothingAdded.classList.contains('visually-hidden'))
     nothingAdded.classList.add('visually-hidden');
-    const query = searchInput.value;
-if(query.length===0)renderTrending({});
-else if(query.length>0)renderSearch({query});
-
+  const query = searchInput.value;
+  if (query.length === 0) renderTrending({});
+  else if (query.length > 0) renderSearch({ query });
 });
 
 libraryBtn.addEventListener('click', e => {
+  document.querySelector("head>title").innerHTML = "Library";
   homeBtn.disabled = false;
   toggleBtn(e);
   chooseCurrentButton();
-storageRender("movie");
-paginator.innerHTML="";
-if (!paginator.classList.contains('visually-hidden'))paginator.classList.add("visually-hidden");
+  storageRender('movie');
+  paginator.innerHTML = '';
+  if (!paginator.classList.contains('visually-hidden')) paginator.classList.add('visually-hidden');
 });
 
 function toggleBtn(e) {
