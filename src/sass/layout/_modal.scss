@@ -69,10 +69,10 @@ justify-content: center;
 }
 .modal-poster {
   border-radius:5px ;
-  height: fit-content;
   max-height: 100%;
   max-width: 240px;
   @include tablet {
+    height: fit-content;
     max-width: 264px;
   }
   @include desktop {

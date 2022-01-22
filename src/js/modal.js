@@ -1,6 +1,7 @@
 import { fetchDetails } from './api';
 import { genreLengthController } from './filmList';
 import { storageOperation, storageContains, storageRender } from './localStorage';
+import svgSprite from "../images/symbol-defs.svg";
 
 const body = document.querySelector('body');
 const filmList = document.querySelector('.film-list');
@@ -72,7 +73,7 @@ function createModalMarkup({
   return `<div class="modal">
     <button class="close-button">
       <svg class="close-icon">
-        <use href="/Filmoteka/symbol-defs.aefec09d.svg#closeIcon"></use>
+        <use href="${svgSprite}#closeIcon"></use>
       </svg>
     </button>
     <div class="poster-container">
