@@ -5,6 +5,7 @@ const loader = document.querySelector('.loader-backdrop');
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  document.querySelector(".filmoteka").href = window.location.href ;
   const viewportWidth = window.innerWidth;
   if (localStorage.getItem('watched') === null) localStorage.setItem('watched', JSON.stringify([]));
   if (localStorage.getItem('queue') === null) localStorage.setItem('queue', JSON.stringify([]));
