@@ -44,8 +44,13 @@
   width: 30px;
   border: none;
   background-color: transparent;
-  &:hover .close-icon {
+  &:active .close-icon {
     stroke: var(--accent-color);
+  }
+  @include tablet {
+    &:hover .close-icon {
+      stroke: var(--accent-color);
+    }
   }
 }
 .close-icon {
@@ -63,7 +68,7 @@
   max-width: 240px;
   margin-bottom: 30px;
   @include tablet {
-  align-self: unset;
+    align-self: unset;
     margin-bottom: 0;
     margin-right: 30px;
     max-height: 100%;
@@ -79,7 +84,7 @@
 }
 .modal-info {
   font-weight: 500;
-    max-width: 264px;
+  max-width: 264px;
   @include tablet {
     overflow-y: auto;
     max-width: unset;
@@ -184,13 +189,13 @@
     margin-right: 14px;
   }
   &.selected,
-  &:hover {
+  &:active {
     transition: background-color 250ms linear;
     border: none;
     background-color: var(--accent-color);
     color: var(--white-text);
   }
-  &.selected:hover {
+  &.selected:active {
     transition: background-color 250ms linear;
     border: 1px solid var(--main-text-color);
     background: transparent;
@@ -200,6 +205,18 @@
     width: 125px;
     padding-right: 10px;
     padding-left: 10px;
+    &:hover {
+      transition: background-color 250ms linear;
+      border: none;
+      background-color: var(--accent-color);
+      color: var(--white-text);
+    }
+    &.selected:hover {
+      transition: background-color 250ms linear;
+      border: 1px solid var(--main-text-color);
+      background: transparent;
+      color: var(--main-text-color);
+    }
   }
   @include desktop {
     width: 136px;

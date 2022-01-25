@@ -7,7 +7,7 @@
   flex-direction: row;
   justify-content: center;
 }
-.hero.library{
+.hero.library {
   padding-bottom: 76px;
 }
 .form-box {
@@ -17,7 +17,7 @@
   flex-direction: column;
   align-items: center;
 }
-.search-form {  
+.search-form {
   max-width: 280px;
   width: 100%;
   position: relative;
@@ -78,10 +78,14 @@
 }
 .error {
   position: absolute;
+  width: 100%;
   top: 44px;
   font-size: 14px;
   line-height: 1.2;
   color: var(--error-color);
+  @include tablet {
+    width: unset;
+  }
 }
 
 //LIBRARY
@@ -106,22 +110,28 @@
   border-radius: 5px;
   border: 1px solid var(--white-text);
   transition: background-color 250ms linear;
-  @include tablet {
-    width: 136px;
-  }
   &.current {
     cursor: default;
     transition: background-color 250ms linear;
     border: none;
     background-color: var(--accent-color);
   }
-  &:hover {
+
+  &:active {
     transition: background-color 250ms linear;
     border: none;
     background-color: var(--accent-color);
   }
-  &:first-child{
+
+  &:first-child { 
     margin-right: 15px;
   }
+  @include tablet {
+    width: 136px;
+    &:hover {
+      transition: background-color 250ms linear;
+      border: none;
+      background-color: var(--accent-color);
+    }
+  }
 }
-

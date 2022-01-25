@@ -50,12 +50,18 @@
     cursor: default;
     border-bottom: 3px solid var(--accent-color);
     transition: border 250ms linear;
-  }&:hover{
+  }&:active{
     border-bottom: 3px solid var(--accent-color);
     transition: border 250ms linear;
   }
   &:first-child {
     margin-right: 39px;
+  }
+  @include tablet{
+    &:hover{
+      border-bottom: 3px solid var(--accent-color);
+      transition: border 250ms linear;
+    }
   }
 }
 
