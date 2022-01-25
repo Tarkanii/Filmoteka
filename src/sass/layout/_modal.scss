@@ -69,6 +69,7 @@
 }
 .modal-poster {
   border-radius:5px ;
+  width: fit-content; 
   max-height: 357px;
   max-width: 240px;
   @include tablet {
