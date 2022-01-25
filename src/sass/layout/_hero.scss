@@ -118,6 +118,7 @@
   }
 
   &:active {
+    outline:none;
     transition: background-color 250ms linear;
     border: none;
     background-color: var(--accent-color);
@@ -128,7 +129,8 @@
   }
   @include tablet {
     width: 136px;
-    &:hover {
+    &:hover,&:focus {
+    outline:none;
       transition: background-color 250ms linear;
       border: none;
       background-color: var(--accent-color);

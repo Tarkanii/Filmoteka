@@ -36,6 +36,7 @@
     }
   }
   &:active {
+    outline:none;
     cursor: pointer;
     transition: background-color 250ms linear;
     background-color: var(--accent-color);
@@ -46,7 +47,8 @@
     }
   }
   @include tablet{
-    &:hover {
+    &:hover,&:focus {
+    outline:none;
     cursor: pointer;
     transition: background-color 250ms linear;
     background-color: var(--accent-color);

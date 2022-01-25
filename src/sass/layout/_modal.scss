@@ -45,10 +45,14 @@
   border: none;
   background-color: transparent;
   &:active .close-icon {
+    outline: none;
     stroke: var(--accent-color);
   }
   @include tablet {
-    &:hover .close-icon {
+    &:focus{
+    outline: none;
+  }
+    &:hover .close-icon,&:focus .close-icon {
       stroke: var(--accent-color);
     }
   }
@@ -190,12 +194,14 @@
   }
   &.selected,
   &:active {
+    outline:none;
     transition: background-color 250ms linear;
     border: none;
     background-color: var(--accent-color);
     color: var(--white-text);
   }
   &.selected:active {
+    outline:none;
     transition: background-color 250ms linear;
     border: 1px solid var(--main-text-color);
     background: transparent;
@@ -205,13 +211,15 @@
     width: 125px;
     padding-right: 10px;
     padding-left: 10px;
-    &:hover {
+    &:hover,&:focus {
+    outline:none;
       transition: background-color 250ms linear;
       border: none;
       background-color: var(--accent-color);
       color: var(--white-text);
     }
-    &.selected:hover {
+    &.selected:hover,&.selected:focus {
+    outline:none;
       transition: background-color 250ms linear;
       border: 1px solid var(--main-text-color);
       background: transparent;
