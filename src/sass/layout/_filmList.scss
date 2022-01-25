@@ -28,6 +28,14 @@
   cursor: pointer;
   margin-bottom: 20px;
   border-radius: 5px;
+  &:active {
+    transition: transform 250ms linear;
+    transform: scale(1.03);
+  }
+  &:active .movie-poster {
+    transition: box-shadow 250ms linear;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+  }
   @include tablet {
     &:hover {
       transition: transform 250ms linear;
