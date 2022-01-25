@@ -2,6 +2,7 @@ import { renderTrending } from './filmList';
 import { renderSearch } from './search';
 import svgSprite from "../images/symbol-defs.svg";
 
+
 const paginator = document.querySelector('.paginator');
 window.addEventListener('resize', e => {
   const viewportWidth = e.target.innerWidth;
@@ -32,7 +33,12 @@ paginator.addEventListener('click', e => {
   if (!target.classList.contains('paginator-button')) return;
   if (target.disabled) return;
   const header = document.querySelector('header');
+  const error = document.querySelector('.error');
   const searchInput = document.querySelector('.search-input');
+  if (!error.classList.contains('visually-hidden')) {
+    error.classList.add('visually-hidden');
+    searchInput.value="";
+  }
   const currentPage = Number(paginator.querySelector('.current').innerHTML);
   if (target.classList.contains('previous')) {
     if (searchInput.value.length === 0) renderTrending({ page: currentPage - 1 });
