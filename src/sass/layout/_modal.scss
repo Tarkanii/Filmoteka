@@ -14,6 +14,7 @@
   visibility: hidden;
 }
 .modal {
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   padding: 40px 20px;
@@ -101,8 +102,9 @@
   line-height: 1.2;
   margin-bottom: 20px;
   @include desktop {
-    font-size: 30px;
+    font-size: 30px;   max-width: 396px;
   }
+
 }
 .specifications {
   display: flex;
