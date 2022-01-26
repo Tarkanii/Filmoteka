@@ -1,14 +1,50 @@
 // HOME
 
-.hero {
+.home-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+  -webkit-image-set(url("../images/mobile/header.jpg") 1x, url("../images/mobile/header@2x.jpg") 2x);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center top;
+
+  @include tablet {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    -webkit-image-set(url("../images/tablet/header.jpg") 1x, url("../images/tablet/header@2x.jpg") 2x);
+  }
+  @include desktop {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    -webkit-image-set(url("../images/desktop/header.jpg") 1x, url("../images/desktop/header@2x.jpg") 2x);
+   
+  }
+}
+.library-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+  -webkit-image-set(url("../images/mobile/library.jpg") 1x, url("../images/mobile/library@2x.jpg") 2x);
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  background-position: center top;
+  @include tablet {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    -webkit-image-set(url("../images/tablet/library.jpg") 1x, url("../images/tablet/library@2x.jpg") 2x);
+    background-size: cover;
+  }
+  @include desktop {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    -webkit-image-set(url("../images/desktop/library.jpg") 1x, url("../images/desktop/library@2x.jpg") 2x);
+  background-size:  cover;
+   ;
+  }
+}
+
+.header-features {
   padding-top: 38px;
-  padding-bottom: 93px;
+  padding-bottom: 90px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.hero.library {
-  padding-bottom: 76px;
+.header-features.library {
+  padding-bottom: 73px;
 }
 .form-box {
   position: relative;

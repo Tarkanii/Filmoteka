@@ -26,42 +26,7 @@ main{
     padding-right: 71px;
   }
 }
-.home-page {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-  -webkit-image-set(url("../images/mobile/header.jpg") 1x, url("../images/mobile/header@2x.jpg") 2x);
-  background-repeat:no-repeat;
-  background-size: 100% 230px;
-  background-position: center top;
 
-  @include tablet {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    -webkit-image-set(url("../images/tablet/header.jpg") 1x, url("../images/tablet/header@2x.jpg") 2x);
-    background-size: 768px 230px;
-  }
-  @include desktop {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    -webkit-image-set(url("../images/desktop/header.jpg") 1x, url("../images/desktop/header@2x.jpg") 2x);
-    background-size: 1024px 230px;
-  }
-}
-.library-page {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-  -webkit-image-set(url("../images/mobile/library.jpg") 1x, url("../images/mobile/library@2x.jpg") 2x);
-  background-repeat:no-repeat;
-  background-size: 100% 230px;
-  background-position: center top;
-  @include tablet {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    -webkit-image-set(url("../images/tablet/library.jpg") 1x, url("../images/tablet/library@2x.jpg") 2x);
-    background-size: 768px 230px;
-  }
-  @include desktop {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    -webkit-image-set(url("../images/desktop/library.jpg") 1x, url("../images/desktop/library@2x.jpg") 2x);
-  background-size:  1024px 230px;
-   ;
-  }
-}
 h1,
 h2,
 h3,

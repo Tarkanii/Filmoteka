@@ -3,7 +3,8 @@ import { genreLengthController } from './filmList';
 import { storageOperation, storageContains, storageRender } from './localStorage';
 import svgSprite from "../images/symbol-defs.svg";
 
-const body = document.querySelector('body');
+const header = document.querySelector('header');
+const body = document.querySelector("body");
 const filmList = document.querySelector('.film-list');
 const backdrop = document.querySelector('.backdrop');
 const queueBtn = document.querySelector(".hero-queue");
