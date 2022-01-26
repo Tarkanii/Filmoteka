@@ -1,6 +1,6 @@
 import { fetchDetails } from './api';
 import { genreLengthController } from './filmList';
-import { storageOperation, storageContains, storageRender } from './localStorage';
+import { storageOperation, storageContains, storageRender } from './localstorage';
 import svgSprite from "../images/symbol-defs.svg";
 
 const header = document.querySelector('header');
