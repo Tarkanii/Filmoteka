@@ -22,7 +22,7 @@ window.addEventListener('resize', e => {
 });
 
 paginator.addEventListener('click', e => {
-  let target = '';
+  let target = undefined;
   if (e.target.nodeName === 'use') {
     target = e.target.parentNode.parentNode;
   } else if (e.target.nodeName === 'svg') {
@@ -30,7 +30,7 @@ paginator.addEventListener('click', e => {
   } else if (e.target.nodeName === 'BUTTON') {
     target = e.target;
   }
-  if (!target.classList.contains('paginator-button')) return;
+  if (!target?.classList.contains('paginator-button')) return;
   if (target.disabled) return;
   const header = document.querySelector('header');
   const error = document.querySelector('.error');
