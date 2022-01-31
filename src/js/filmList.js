@@ -1,20 +1,48 @@
 import { fetchTrending, fetchGenres } from './api';
+import { storageRender } from './localstorage'; 
 import { renderPaginator } from './pagination';
+import { renderSearch } from './search';
 const paginator = document.querySelector('.paginator');
 const loader = document.querySelector('.loader-backdrop');
+const typesContainer = document.querySelector('.types-container');
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  document.querySelector('.filmoteka').href = window.location.href;
   const viewportWidth = window.innerWidth;
   if (localStorage.getItem('watched') === null) localStorage.setItem('watched', JSON.stringify([]));
   if (localStorage.getItem('queue') === null) localStorage.setItem('queue', JSON.stringify([]));
   if (viewportWidth < 768) {
     paginator.classList.toggle('mobile');
   }
-  renderTrending({});
+  renderTrending();
 });
 
-export async function renderTrending({ page = 1, type = 'movie' }) {
+typesContainer.addEventListener('click', e => {
+  if (e.target.nodeName != 'BUTTON') return;
+  const header = document.querySelector("header");
+  const searchInput = header.querySelector(".search-input");
+  const tvBtn = typesContainer.querySelector(".tv");
+  const movieBtn = typesContainer.querySelector(".movie");    
+  e.target.disabled = true;  
+  tvBtn.classList.toggle('selected');
+  movieBtn.classList.toggle('selected');
+  if(e.target.classList.contains("tv"))movieBtn.disabled = false;
+  if(e.target.classList.contains("movie"))tvBtn.disabled = false;
+  if (header.classList.contains('home-page')) {
+    if (searchInput.value.length === 0) renderTrending();
+    else renderSearch({ query: searchInput.value});
+  } else if (header.classList.contains('library-page')) {
+    storageRender();
+  }
+});
+
+export function getType(){
+  const selected = typesContainer.querySelector(".selected");
+  return selected.dataset.type;
+}
+export async function renderTrending(page = 1) {
+  const type = getType();
   loader.classList.toggle('visually-hidden');
   try {
     const { results, total_pages } = await fetchTrending({ page, type });
@@ -27,7 +55,7 @@ export async function renderTrending({ page = 1, type = 'movie' }) {
   }
 }
 
-export async function renderList({ list, type = 'movie' }) {
+export async function renderList({ list, type}) {
   const filmList = document.querySelector('.film-list');
   try {
     const arrOfPromises = list.map(async item => {

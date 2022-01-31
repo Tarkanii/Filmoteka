@@ -40,10 +40,10 @@ try {
 }
 };
 
-export const search = async ({query,page=1})=>{
+export const search = async ({query,page=1,type})=>{
   if(!query)return;
   try {
-    const {data} = await instanse.get(`search/movie`,{params:{
+    const {data} = await instanse.get(`search/${type}`,{params:{
       page,
       query
     }})

@@ -1,5 +1,7 @@
 import { renderTrending } from './filmList';
 import { renderSearch } from './search';
+import svgSprite from "../images/symbol-defs.svg";
+
 
 const paginator = document.querySelector('.paginator');
 window.addEventListener('resize', e => {
@@ -31,16 +33,21 @@ paginator.addEventListener('click', e => {
   if (!target.classList.contains('paginator-button')) return;
   if (target.disabled) return;
   const header = document.querySelector('header');
+  const error = document.querySelector('.error');
   const searchInput = document.querySelector('.search-input');
+  if (!error.classList.contains('visually-hidden')) {
+    error.classList.add('visually-hidden');
+    searchInput.value="";
+  }
   const currentPage = Number(paginator.querySelector('.current').innerHTML);
   if (target.classList.contains('previous')) {
-    if (searchInput.value.length === 0) renderTrending({ page: currentPage - 1 });
+    if (searchInput.value.length === 0) renderTrending(currentPage - 1 );
     else renderSearch({ query: searchInput.value, page: currentPage - 1 });
   } else if (target.classList.contains('next')) {
-    if (searchInput.value.length === 0) renderTrending({ page: currentPage + 1 });
+    if (searchInput.value.length === 0) renderTrending(currentPage + 1);
     else renderSearch({ query: searchInput.value, page: currentPage + 1 });
   } else if (target.classList.contains('number')) {
-    if (searchInput.value.length === 0) renderTrending({ page: Number(target.innerHTML) });
+    if (searchInput.value.length === 0) renderTrending(Number(target.innerHTML) );
     else renderSearch({ query: searchInput.value, page: Number(target.innerHTML) });
   }
   header.scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -85,13 +92,13 @@ function createMobilePaginator(current, totalPages) {
     return `<ul class="paginator-buttons">
     <li class="paginator-item "><button class="paginator-button previous" ${
       current === 1 ? 'disabled' : ''
-    }><svg class="left-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+    }><svg class="left-arrow"><use href="${svgSprite}#icon-arrow-left" class="svg"></use></svg></button></li>
     <li class="paginator-item"><button class="paginator-button number ">${current - 1}</button></li>
     <li class="paginator-item"><button class="paginator-button number current " disabled>${current}</button></li>
     <li class="paginator-item"><button class="paginator-button number ">${current + 1}</button></li>
     <li class="paginator-item"><button class="paginator-button next" ${
       current === totalPages ? 'disabled' : ''
-    }><svg class="right-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+    }><svg class="right-arrow"><use href="${svgSprite}#icon-arrow-left" class="svg"></use></svg></button></li>
     </ul>`;
   }
 }
@@ -106,12 +113,12 @@ function createNumberOfButtons({ startValue, endValue, current, totalPages }) {
   }
   const markup = `<ul class="paginator-buttons"><li class="paginator-item"><button class="paginator-button previous" ${
     current === 1 ? 'disabled' : ''
-  }><svg class="left-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li>${arrOfMarkup.join(
+  }><svg class="left-arrow"><use href="${svgSprite}#icon-arrow-left" class="svg"></use></svg></button></li>${arrOfMarkup.join(
     '',
   )}
   <li class="paginator-item"><button class="paginator-button next"  ${
     current === totalPages ? 'disabled' : ''
-  }><svg class="right-arrow"><use href="/symbol-defs.4fba6ab5.svg#icon-arrow-left" class="svg"></use></svg></button></li></ul>`;
+  }><svg class="right-arrow"><use href="${svgSprite}#icon-arrow-left" class="svg"></use></svg></button></li></ul>`;
   return markup;
 }
 
@@ -119,13 +126,13 @@ function createLargeSizePaginator(current, totalPages) {
   return `<ul class="paginator-buttons">
 <li class="paginator-item "><button class="paginator-button previous" ${
     current === 1 ? 'disabled' : ''
-  }><svg class="left-arrow"><use href="./images/symbol-defs.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+  }><svg class="left-arrow"><use href="${svgSprite}#icon-arrow-left" class="svg"></use></svg></button></li>
 <li class="paginator-item ${
     current === 1 ? 'visually-hidden' : ''
   }"><button class="paginator-button number ">1</button></li>
 <li class="paginator-item first-decor ${
     current - 1 <= 3 ? 'visually-hidden' : ''
-  }"><svg class="dots"><use href="/symbol-defs.4fba6ab5.svg#dots" class="svg"></use></svg></li>
+  }"><svg class="dots"><use href="${svgSprite}#dots" class="svg"></use></svg></li>
 <li class="paginator-item ${
     current - 2 <= 1 ? 'visually-hidden' : ''
   }"><button class="paginator-button number ">${current - 2}</button></li>
@@ -141,12 +148,12 @@ function createLargeSizePaginator(current, totalPages) {
   }"><button class="paginator-button number ">${current + 2}</button></li>
 <li class="paginator-item second-decor ${
     totalPages - current <= 3 ? 'visually-hidden' : ''
-  }"><svg class="dots"><use href="/symbol-defs.4fba6ab5.svg#dots" class="svg"></use></svg></li>
+  }"><svg class="dots"><use href="${svgSprite}#dots" class="svg"></use></svg></li>
 <li class="paginator-item ${
     current == totalPages ? 'visually-hidden' : ''
   }"><button class="paginator-button number ">${totalPages}</button></li>
 <li class="paginator-item"><button class="paginator-button next" ${
     current === totalPages ? 'disabled' : ''
-  }><svg class="right-arrow"><use href="./images/symbol-defs.svg#icon-arrow-left" class="svg"></use></svg></button></li>
+  }><svg class="right-arrow"><use href="${svgSprite}#icon-arrow-left" class="svg"></use></svg></button></li>
 </ul>`;
 }

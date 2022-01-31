@@ -11,10 +11,10 @@ const toggleBtn = e => {
 watchedBtn.addEventListener('click', e => {
   queueBtn.disabled = false;
   toggleBtn(e);
-  storageRender("movie");
+  storageRender();
 });
 queueBtn.addEventListener('click', e => {
   watchedBtn.disabled = false;
   toggleBtn(e);
-  storageRender("movie");
+  storageRender();
 });

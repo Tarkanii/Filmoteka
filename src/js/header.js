@@ -4,10 +4,10 @@ import { renderSearch } from './search';
 
 const homeBtn = document.querySelector('.home');
 const libraryBtn = document.querySelector('.library');
-const body = document.querySelector('body');
+const header = document.querySelector('header');
 const libraryBtns = document.querySelector('.library-buttons');
-const heroForm = document.querySelector('.form-box');
-const heroContainer = document.querySelector('.hero');
+const searchForm = document.querySelector('.form-box');
+const headerFeatures = document.querySelector('.header-features');
 const nothingAdded = document.querySelector('.nothing-added');
 const searchInput = document.querySelector('.search-input');
 const paginator = document.querySelector('.paginator');
@@ -19,7 +19,7 @@ homeBtn.addEventListener('click', e => {
   if (!nothingAdded.classList.contains('visually-hidden'))
     nothingAdded.classList.add('visually-hidden');
   const query = searchInput.value;
-  if (query.length === 0) renderTrending({});
+  if (query.length === 0) renderTrending();
   else if (query.length > 0) renderSearch({ query });
 });
 
@@ -35,35 +35,35 @@ libraryBtn.addEventListener('click', e => {
 
 function toggleBtn(e) {
   e.target.disabled = true;
-  toggleBody();
-  chooseHeroType();
+  toggleHeader();
+  chooseHeaderType();
   homeBtn.classList.toggle('current');
   libraryBtn.classList.toggle('current');
 }
 
-function toggleBody() {
-  if (body.classList.contains('home-page')) {
-    body.classList.remove('home-page');
-    body.classList.add('library-page');
-  } else if (body.classList.contains('library-page')) {
-    body.classList.remove('library-page');
-    body.classList.add('home-page');
+function toggleHeader() {
+  if (header.classList.contains('home-page')) {
+    header.classList.remove('home-page');
+    header.classList.add('library-page');
+  } else if (header.classList.contains('library-page')) {
+    header.classList.remove('library-page');
+    header.classList.add('home-page');
   }
 }
 
-function chooseHeroType() {
-  if (body.classList.contains('library-page')) {
-    heroContainer.classList.toggle('library');
-    heroForm.classList.toggle('visually-hidden');
+function chooseHeaderType() {
+  if (header.classList.contains('library-page')) {
+    headerFeatures.classList.toggle('library');
+    searchForm.classList.toggle('visually-hidden');
     libraryBtns.classList.toggle('visually-hidden');
-  } else if (body.classList.contains('home-page')) {
+  } else if (header.classList.contains('home-page')) {
     if (
       libraryBtns.classList.contains('visually-hidden') ||
-      !heroForm.classList.contains('visually-hidden')
+      !searchForm.classList.contains('visually-hidden')
     )
       return;
-    heroContainer.classList.toggle('library');
-    heroForm.classList.toggle('visually-hidden');
+    headerFeatures.classList.toggle('library');
+    searchForm.classList.toggle('visually-hidden');
     libraryBtns.classList.toggle('visually-hidden');
   }
 }

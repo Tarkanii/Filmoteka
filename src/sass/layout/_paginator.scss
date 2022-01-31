@@ -35,7 +35,8 @@
       color: var(--white-text);
     }
   }
-  &:hover {
+  &:active {
+    outline:none;
     cursor: pointer;
     transition: background-color 250ms linear;
     background-color: var(--accent-color);
@@ -45,6 +46,20 @@
       stroke: var(--white-text);
     }
   }
+  @include tablet{
+    &:hover,&:focus {
+    outline:none;
+    cursor: pointer;
+    transition: background-color 250ms linear;
+    background-color: var(--accent-color);
+    color: var(--white-text);
+    & .right-arrow .svg,
+    & .left-arrow .svg{
+      stroke: var(--white-text);
+    }
+  }
+  }
+  
 }
 
 .left-arrow {
