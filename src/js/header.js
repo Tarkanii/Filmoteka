@@ -28,7 +28,7 @@ libraryBtn.addEventListener('click', e => {
   homeBtn.disabled = false;
   toggleBtn(e);
   chooseCurrentButton();
-  storageRender('movie');
+  storageRender();
   paginator.innerHTML = '';
   if (!paginator.classList.contains('visually-hidden')) paginator.classList.add('visually-hidden');
 });
