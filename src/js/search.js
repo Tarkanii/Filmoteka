@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 import { search } from './api';
-import { renderList, renderTrending } from './filmList';
+import { renderList, renderTrending, getType} from './filmList';
 import { renderPaginator } from './pagination';
 const error = document.querySelector('.error');
 const searchForm = document.querySelector('.search-form');
@@ -19,7 +19,7 @@ searchForm.addEventListener(
   debounce(async e => {
     const query = e.target.value;
     if (!query) {
-      renderTrending({});
+      renderTrending();
       return;
     }
     renderSearch({ query });
@@ -27,17 +27,18 @@ searchForm.addEventListener(
 );
 
 export async function renderSearch({ query, page = 1 }) {
+  const type = getType();
   loader.classList.toggle('visually-hidden');
   if(page>500){
    showQueryError();
   };
-  const { total_pages, results } = await search({ query, page });
+  const { total_pages, results } = await search({ query, page, type });
   if (results.length === 0) { 
-    renderTrending({type:"movie"});
+    renderTrending();
     showQueryError();
   } else {
     paginator.dataset.pages = total_pages;
-    renderList({ list: results });
+    renderList({list:results, type} );
     renderPaginator(page, total_pages);
     loader.classList.toggle('visually-hidden');
   }

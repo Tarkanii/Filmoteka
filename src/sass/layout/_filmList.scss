@@ -2,9 +2,79 @@
   padding-top: 20px;
   padding-bottom: 40px;
   @include tablet {
-    padding-top: 60px;
+    padding-top: 30px;
     padding-bottom: 50px;
   }
+}
+.types-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  @include tablet {
+    padding-bottom: 30px;
+  }
+}
+.type-title{
+  margin-right: 20px;
+}
+.type-button{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 30px;
+    font-weight: 500;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: var(--main-text-color);
+    background: transparent;
+    border-radius: 5px;
+    border: 1px solid var(--main-text-color);
+    transition: background-color 250ms linear;
+    &.movie {
+      margin-right: 14px;
+    }
+    &.selected{
+      cursor:default;
+      outline:none;
+      transition: background-color 250ms linear;
+      border: none;
+      background-color: var(--accent-color);
+      color: var(--white-text);
+    }
+    &:active {
+      outline:none;
+      transition: background-color 250ms linear;
+      border: none;
+      background-color: var(--accent-color);
+      color: var(--white-text);
+    }
+    @include tablet {
+      width: 125px;
+      padding-right: 10px;
+      padding-left: 10px;
+      &:hover,&:focus {
+      outline:none;
+        transition: background-color 250ms linear;
+        border: none;
+        background-color: var(--accent-color);
+        color: var(--white-text);
+      }
+      &.selected:hover,&.selected:focus {
+        cursor:default;
+        outline:none;
+        transition: background-color 250ms linear;
+        border: none;
+        background-color: var(--accent-color);
+        color: var(--white-text);
+      }
+    }
+    @include desktop {
+      width: 136px;
+    }
 }
 .nothing-added {
   text-align: center;

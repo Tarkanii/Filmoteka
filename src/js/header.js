@@ -19,7 +19,7 @@ homeBtn.addEventListener('click', e => {
   if (!nothingAdded.classList.contains('visually-hidden'))
     nothingAdded.classList.add('visually-hidden');
   const query = searchInput.value;
-  if (query.length === 0) renderTrending({});
+  if (query.length === 0) renderTrending();
   else if (query.length > 0) renderSearch({ query });
 });
 
@@ -28,7 +28,7 @@ libraryBtn.addEventListener('click', e => {
   homeBtn.disabled = false;
   toggleBtn(e);
   chooseCurrentButton();
-  storageRender('movie');
+  storageRender();
   paginator.innerHTML = '';
   if (!paginator.classList.contains('visually-hidden')) paginator.classList.add('visually-hidden');
 });
