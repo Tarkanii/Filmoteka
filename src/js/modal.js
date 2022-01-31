@@ -6,8 +6,8 @@ import svgSprite from '../images/symbol-defs.svg';
 const body = document.querySelector('body');
 const filmList = document.querySelector('.film-list');
 const backdrop = document.querySelector('.backdrop');
-const queueBtn = document.querySelector('.hero-queue');
-const watchedBtn = document.querySelector('.hero-watched');
+const queueBtn = document.querySelector('.library-queue');
+const watchedBtn = document.querySelector('.library-watched');
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 

@@ -1,6 +1,6 @@
 import { storageRender } from "./localstorage";
-const watchedBtn = document.querySelector('.hero-watched');
-const queueBtn = document.querySelector('.hero-queue');
+const watchedBtn = document.querySelector('.library-watched');
+const queueBtn = document.querySelector('.library-queue');
 
 const toggleBtn = e => {
   e.target.disabled = true;

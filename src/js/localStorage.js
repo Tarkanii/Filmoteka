@@ -58,8 +58,8 @@ function removeFromStorage(id, arrName) {
 export const chooseCurrentButton = () => {
   const watchedArr = JSON.parse(localStorage.getItem('watched'));
   const queueArr = JSON.parse(localStorage.getItem('queue'));
-  const queueBtn = document.querySelector('.hero-queue');
-  const watchedBtn = document.querySelector('.hero-watched');
+  const queueBtn = document.querySelector('.library-queue');
+  const watchedBtn = document.querySelector('.library-watched');
   if (queueBtn.classList.contains('current')) {
     queueBtn.classList.remove('current');
     queueBtn.disabled = false;
