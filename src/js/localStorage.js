@@ -1,5 +1,5 @@
 import { fetchDetails } from './api';
-import { createCardMarkup } from './filmList';
+import { createCardMarkup, getType } from './filmList';
 
 export const storageOperation = e => {
   const { target } = e;
@@ -80,7 +80,8 @@ if(watchedArr.length && queueArr.length === 0) {
   }
 };
 
-export const storageRender = async type => {
+export const storageRender =async ()=> {
+  const type = getType();
   const filmList = document.querySelector('.film-list');
   const buttons = document.querySelector('.library-buttons');
   const watchedBtn = buttons.firstElementChild;
@@ -95,19 +96,20 @@ export const storageRender = async type => {
     }
   }
   filmList.innerHTML = '';
-  if (arr.length === 0) {
+  const filtredArr = arr?.filter(item => item.type === type);
+ if (filtredArr.length === 0) {
     document.querySelector('.nothing-added').classList.remove('visually-hidden');
     return;
   }
-  const filtredArr = arr.filter(item => item.type === type);
-  const markup = await createStorageMarkup(filtredArr, type);  
+  const markup = await createStorageMarkup(filtredArr);  
   filmList.insertAdjacentHTML('beforeend', markup);
 };
 
-async function createStorageMarkup(arr, type) {
+async function createStorageMarkup(arr) {
  if (!document.querySelector('.nothing-added').classList.contains('visually-hidden')){
     document.querySelector('.nothing-added').classList.add('visually-hidden');
   }
+  const type = getType();
   const arrayOfPromises = arr.map(async item => {
     const data = await fetchDetails(item.id, type);
     const genres = data.genres.map(item => item.name);

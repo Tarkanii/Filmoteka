@@ -1,14 +1,13 @@
 import { fetchDetails } from './api';
-import { genreLengthController } from './filmList';
+import { genreLengthController, getType } from './filmList';
 import { storageOperation, storageContains, storageRender } from './localstorage';
-import svgSprite from "../images/symbol-defs.svg";
+import svgSprite from '../images/symbol-defs.svg';
 
-const header = document.querySelector('header');
-const body = document.querySelector("body");
+const body = document.querySelector('body');
 const filmList = document.querySelector('.film-list');
 const backdrop = document.querySelector('.backdrop');
-const queueBtn = document.querySelector(".hero-queue");
-const watchedBtn = document.querySelector(".hero-watched");
+const queueBtn = document.querySelector('.hero-queue');
+const watchedBtn = document.querySelector('.hero-watched');
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -35,15 +34,15 @@ backdrop.addEventListener('click', ({ target }) => {
 });
 
 async function closeModal() {
+  const id = document.querySelector('.modal__buttons').dataset.id;
+  const type = getType();
   body.style.overflow = 'unset';
   backdrop.classList.add('hidden');
   backdrop.innerHTML = '';
-  if(queueBtn.classList.contains("current")){
-    const queueArr = JSON.parse(localStorage.getItem('queue'));
-    if(queueArr.length!=filmList.children.length)storageRender("movie");
-  }else if(watchedBtn.classList.contains("current")){
-    const watchedArr = JSON.parse(localStorage.getItem('watched'));
-    if(watchedArr.length!=filmList.children.length)storageRender("movie");
+  if (queueBtn.classList.contains('current')) {
+    if (!storageContains(id,type,"queue")) storageRender();
+  } else if (watchedBtn.classList.contains('current')) {
+    if (!storageContains(id,type,"watched")) storageRender();
   }
 }
 
@@ -64,6 +63,8 @@ function createModalMarkup({
   genres,
   original_title,
   title,
+  name,
+  original_name,
   vote_average,
   vote_count,
   popularity,
@@ -87,7 +88,7 @@ function createModalMarkup({
       />
     </div>
     <div class="modal-info">
-      <h2 class="modal-title">${title}</h2>
+      <h2 class="modal-title">${title || name}</h2>
       <div class="specifications">
         <ul class="keys">
           <li class="key">Vote / Votes</li>
@@ -102,11 +103,15 @@ function createModalMarkup({
             )}</span> / <span class="modal-votes">${vote_count}</span>
           </li>
           <li class="value">${popularity.toFixed(1)}</li>
-          <li class="value title">${original_title}</li>
-          <li class="value">${genres.length ? genreLengthController(
-            genres.map(item => item.name),
-            26,
-          ): "None"}</li>
+          <li class="value title">${original_title || original_name}</li>
+          <li class="value">${
+            genres.length
+              ? genreLengthController(
+                  genres.map(item => item.name),
+                  26,
+                )
+              : 'None'
+          }</li>
         </ul>
       </div>
       <h3 class="about-title">ABOUT</h3>
