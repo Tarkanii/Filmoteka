@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 import { search } from './api';
-import { renderList, renderTrending, getType} from './filmList';
+import { renderList, renderTrending, getType } from './filmList';
 import { renderPaginator } from './pagination';
 const error = document.querySelector('.error');
 const searchForm = document.querySelector('.search-form');
@@ -27,23 +27,26 @@ searchForm.addEventListener(
 );
 
 export async function renderSearch({ query, page = 1 }) {
+  if (!/[a-z]/i.test(query)) return;
   const type = getType();
-  loader.classList.toggle('visually-hidden');
-  if(page>500){
-   showQueryError();
-  };
-  const { total_pages, results } = await search({ query, page, type });
-  if (results.length === 0) { 
-    renderTrending();
-    showQueryError();
-  } else {
-    paginator.dataset.pages = total_pages;
-    renderList({list:results, type} );
-    renderPaginator(page, total_pages);
+  if (loader.classList.contains('visually-hidden')) loader.classList.remove('visually-hidden');
+  try {
+    const { total_pages, results } = await search({ query, page, type });
     loader.classList.toggle('visually-hidden');
+    if (results.length === 0) {
+      renderTrending();
+      showQueryError();
+    } else {
+      paginator.dataset.pages = total_pages;
+      renderList({ list: results, type });
+      renderPaginator(page, total_pages);
+    }
+    if (!loader.classList.contains('visually-hidden')) loader.classList.add('visually-hidden');
+  } catch (error) {
+    console.log(error.message);
   }
 }
-function showQueryError(){
+function showQueryError() {
   searchForm.firstElementChild.focus();
   loader.classList.toggle('visually-hidden');
   if (error.classList.contains('visually-hidden')) error.classList.remove('visually-hidden');

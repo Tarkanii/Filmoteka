@@ -1,5 +1,5 @@
 import { fetchTrending, fetchGenres } from './api';
-import { storageRender } from './localstorage'; 
+import { storageRender } from './localstorage';
 import { renderPaginator } from './pagination';
 import { renderSearch } from './search';
 const paginator = document.querySelector('.paginator');
@@ -20,42 +20,42 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 typesContainer.addEventListener('click', e => {
   if (e.target.nodeName != 'BUTTON') return;
-  const header = document.querySelector("header");
-  const searchInput = header.querySelector(".search-input");
-  const tvBtn = typesContainer.querySelector(".tv");
-  const movieBtn = typesContainer.querySelector(".movie");    
-  e.target.disabled = true;  
+  const header = document.querySelector('header');
+  const searchInput = header.querySelector('.search-input');
+  const tvBtn = typesContainer.querySelector('.tv');
+  const movieBtn = typesContainer.querySelector('.movie');
+  e.target.disabled = true;
   tvBtn.classList.toggle('selected');
   movieBtn.classList.toggle('selected');
-  if(e.target.classList.contains("tv"))movieBtn.disabled = false;
-  if(e.target.classList.contains("movie"))tvBtn.disabled = false;
+  if (e.target.classList.contains('tv')) movieBtn.disabled = false;
+  if (e.target.classList.contains('movie')) tvBtn.disabled = false;
   if (header.classList.contains('home-page')) {
     if (searchInput.value.length === 0) renderTrending();
-    else renderSearch({ query: searchInput.value});
+    else renderSearch({ query: searchInput.value });
   } else if (header.classList.contains('library-page')) {
     storageRender();
   }
 });
 
-export function getType(){
-  const selected = typesContainer.querySelector(".selected");
+export function getType() {
+  const selected = typesContainer.querySelector('.selected');
   return selected.dataset.type;
 }
 export async function renderTrending(page = 1) {
   const type = getType();
-  loader.classList.toggle('visually-hidden');
+  if (loader.classList.contains('visually-hidden')) loader.classList.remove('visually-hidden');
   try {
     const { results, total_pages } = await fetchTrending({ page, type });
     paginator.dataset.pages = total_pages;
     await renderList({ list: results, type });
     renderPaginator(page, total_pages);
-    loader.classList.toggle('visually-hidden');
+    if (!loader.classList.contains('visually-hidden')) loader.classList.add('visually-hidden');
   } catch (err) {
     console.log(err.message);
   }
 }
 
-export async function renderList({ list, type}) {
+export async function renderList({ list, type }) {
   const filmList = document.querySelector('.film-list');
   try {
     const arrOfPromises = list.map(async item => {
