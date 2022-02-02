@@ -27,9 +27,13 @@ searchForm.addEventListener(
 );
 
 export async function renderSearch({ query, page = 1 }) {
-  if (!/[a-z]/i.test(query)) return;
-  const type = getType();
   if (loader.classList.contains('visually-hidden')) loader.classList.remove('visually-hidden');
+  if (!/[a-z]/i.test(query)) {
+    renderTrending();
+    showQueryError();
+    return;
+  }
+  const type = getType();
   try {
     const { total_pages, results } = await search({ query, page, type });
     loader.classList.toggle('visually-hidden');
@@ -48,7 +52,7 @@ export async function renderSearch({ query, page = 1 }) {
 }
 function showQueryError() {
   searchForm.firstElementChild.focus();
-  loader.classList.toggle('visually-hidden');
+  if (!loader.classList.contains('visually-hidden')) loader.classList.add('visually-hidden');
   if (error.classList.contains('visually-hidden')) error.classList.remove('visually-hidden');
   return;
 }
