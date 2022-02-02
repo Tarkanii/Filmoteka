@@ -28,7 +28,7 @@ searchForm.addEventListener(
 
 export async function renderSearch({ query, page = 1 }) {
   if (loader.classList.contains('visually-hidden')) loader.classList.remove('visually-hidden');
-  if (!/[a-z]/i.test(query)) {
+  if (!/[a-z0-9]/i.test(query)) {
     renderTrending();
     showQueryError();
     return;
