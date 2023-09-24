@@ -1,6 +1,6 @@
 import { fetchTrending, fetchGenres } from './api';
 import { storageRender } from './localstorage';
-import { renderPaginator } from './pagination';
+import { renderPaginator, getTotalPages } from './pagination';
 import { renderSearch } from './search';
 const paginator = document.querySelector('.paginator');
 const loader = document.querySelector('.loader-backdrop');
@@ -41,16 +41,18 @@ export function getType() {
   const selected = typesContainer.querySelector('.selected');
   return selected.dataset.type;
 }
+
 export async function renderTrending(page = 1) {
   const type = getType();
   if (loader.classList.contains('visually-hidden')) loader.classList.remove('visually-hidden');
   try {
     const { results, total_pages } = await fetchTrending({ page, type });
-    paginator.dataset.pages = total_pages;
+    paginator.dataset.pages = getTotalPages(total_pages);
     await renderList({ list: results, type });
-    renderPaginator(page, total_pages);
+    renderPaginator(page, getTotalPages(total_pages));
     if (!loader.classList.contains('visually-hidden')) loader.classList.add('visually-hidden');
   } catch (err) {
+    if (!loader.classList.contains('visually-hidden')) loader.classList.add('visually-hidden');
     console.log(err.message);
   }
 }

@@ -1,7 +1,7 @@
 import debounce from 'lodash.debounce';
 import { search } from './api';
 import { renderList, renderTrending, getType } from './filmList';
-import { renderPaginator } from './pagination';
+import { renderPaginator, getTotalPages } from './pagination';
 const error = document.querySelector('.error');
 const searchForm = document.querySelector('.search-form');
 const loader = document.querySelector('.loader-backdrop');
@@ -41,9 +41,9 @@ export async function renderSearch({ query, page = 1 }) {
       renderTrending();
       showQueryError();
     } else {
-      paginator.dataset.pages = total_pages;
+      paginator.dataset.pages = getTotalPages(total_pages);
       renderList({ list: results, type });
-      renderPaginator(page, total_pages);
+      renderPaginator(page, getTotalPages(total_pages));
     }
     if (!loader.classList.contains('visually-hidden')) loader.classList.add('visually-hidden');
   } catch (error) {

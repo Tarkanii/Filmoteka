@@ -41,17 +41,21 @@ paginator.addEventListener('click', e => {
   }
   const currentPage = Number(paginator.querySelector('.current').innerHTML);
   if (target.classList.contains('previous')) {
-    if (searchInput.value.length === 0) renderTrending(currentPage - 1 );
+    if (searchInput.value.length === 0) renderTrending(currentPage - 1);
     else renderSearch({ query: searchInput.value, page: currentPage - 1 });
   } else if (target.classList.contains('next')) {
     if (searchInput.value.length === 0) renderTrending(currentPage + 1);
     else renderSearch({ query: searchInput.value, page: currentPage + 1 });
   } else if (target.classList.contains('number')) {
-    if (searchInput.value.length === 0) renderTrending(Number(target.innerHTML) );
+    if (searchInput.value.length === 0) renderTrending(Number(target.innerHTML));
     else renderSearch({ query: searchInput.value, page: Number(target.innerHTML) });
   }
   header.scrollIntoView({ block: 'start', behavior: 'smooth' });
 });
+
+export function getTotalPages(totalPages) {
+  return totalPages <= 500 ? totalPages : 500;
+}
 
 export function renderPaginator(current, totalPages) {
   if (totalPages === 1) {

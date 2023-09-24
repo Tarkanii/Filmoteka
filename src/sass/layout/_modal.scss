@@ -74,6 +74,7 @@
   margin-bottom: 30px;
   @include tablet {
     align-self: unset;
+    width: max-content;
     margin-bottom: 0;
     margin-right: 30px;
     max-height: 100%;
@@ -194,8 +195,7 @@
   &:first-child {
     margin-right: 14px;
   }
-  &.selected,
-  &:active {
+  &.selected, &:active {
     outline:none;
     transition: background-color 250ms linear;
     border: none;
