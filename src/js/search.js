@@ -47,6 +47,7 @@ export async function renderSearch({ query, page = 1 }) {
     }
     if (!loader.classList.contains('visually-hidden')) loader.classList.add('visually-hidden');
   } catch (error) {
+    if (!loader.classList.contains('visually-hidden')) loader.classList.add('visually-hidden');
     console.log(error.message);
   }
 }

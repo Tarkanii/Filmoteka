@@ -32,6 +32,7 @@ export function storageContains(id, type, arrName) {
     return Boolean(queueArr.find(obj => obj.type === type && obj.id === id));
   }
 }
+
 function addToStorage(item, arrName) {
   if (arrName === 'watched') {
     const watchedArr = JSON.parse(localStorage.getItem('watched'));
@@ -41,6 +42,7 @@ function addToStorage(item, arrName) {
     localStorage.setItem('queue', JSON.stringify([item, ...queueArr]));
   }
 }
+
 function removeFromStorage(id, arrName) {
   if (arrName === 'watched') {
     const watchedArr = JSON.parse(localStorage.getItem('watched'));
@@ -80,14 +82,14 @@ if(watchedArr.length && queueArr.length === 0) {
   }
 };
 
-export const storageRender =async ()=> {
+export const storageRender = async ()=> {
   const type = getType();
   const filmList = document.querySelector('.film-list');
   const buttons = document.querySelector('.library-buttons');
   const watchedBtn = buttons.firstElementChild;
   const queueBtn = buttons.lastElementChild;
   let arr = [];
-  if (buttons.classList.contains('visually-hidden'))return;
+  if (buttons.classList.contains('visually-hidden')) return;
   else {
     if (watchedBtn.classList.contains('current')) {
       arr = [...JSON.parse(localStorage.getItem('watched'))];
@@ -97,7 +99,7 @@ export const storageRender =async ()=> {
   }
   filmList.innerHTML = '';
   const filtredArr = arr?.filter(item => item.type === type);
- if (filtredArr.length === 0) {
+  if (filtredArr.length === 0) {
     document.querySelector('.nothing-added').classList.remove('visually-hidden');
     return;
   }
