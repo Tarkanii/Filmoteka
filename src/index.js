@@ -5,4 +5,3 @@ import "./js/libraryNav";
 import "./js/filmList";
 import "./js/pagination"
 import "./js/modal";
-import "./js/localStorage";
